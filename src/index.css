@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design tokens. Light = board E (warm amber). Dark = board F (neon lime, sharp corners). */
+:root {
+  --bg: 255 255 255;
+  --surface: 255 255 255;
+  --surface-2: 244 241 236;
+  --fg: 17 17 17;
+  --muted: 119 119 119;
+  --border: 228 224 218;
+  --accent: 217 130 43;
+  --accent-fg: 255 255 255;
+  --ok: 46 125 79;
+  --warn: 179 95 14;
+  --bad: 192 57 43;
+  --radius-card: 16px;
+  --radius-btn: 12px;
+  --radius-pill: 999px;
+  --font-heading: 'Fraunces', serif;
+  --heading-weight: 600;
+  --heading-transform: none;
+  --h1-size: 30px;
+  --h2-size: 22px;
+  --hero-bg: radial-gradient(circle at 70% 35%, #6b4220, #14110f 65%);
+  color-scheme: light;
+}
+.dark {
+  --bg: 11 11 11;
+  --surface: 22 22 22;
+  --surface-2: 34 34 34;
+  --fg: 255 255 255;
+  --muted: 170 170 170;
+  --border: 58 58 58;
+  --accent: 200 241 53;
+  --accent-fg: 11 11 11;
+  --ok: 200 241 53;
+  --warn: 255 184 77;
+  --bad: 255 90 77;
+  --radius-card: 2px;
+  --radius-btn: 2px;
+  --radius-pill: 2px;
+  --font-heading: 'Barlow Condensed', sans-serif;
+  --heading-weight: 700;
+  --heading-transform: uppercase;
+  --h1-size: 42px;
+  --h2-size: 28px;
+  --hero-bg: radial-gradient(circle at 72% 38%, rgb(200 241 53 / 0.27), #0b0b0b 64%);
+  color-scheme: dark;
+}
+
+html { -webkit-tap-highlight-color: transparent; }
+body { margin: 0; background: rgb(var(--bg)); color: rgb(var(--fg)); font-family: Inter, system-ui, sans-serif; }
+:focus-visible { outline: 2px solid rgb(var(--accent)); outline-offset: 2px; }
+
+@layer components {
+  .h1 { font: var(--heading-weight) var(--h1-size) / 1.05 var(--font-heading); text-transform: var(--heading-transform); }
+  .h2 { font: var(--heading-weight) var(--h2-size) / 1.1 var(--font-heading); text-transform: var(--heading-transform); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 3rem; padding: 0 1.25rem; border-radius: var(--radius-btn); font-weight: 700; font-size: 0.875rem; text-decoration: none; cursor: pointer; transition: opacity 0.15s; }
+  .dark .btn { text-transform: uppercase; }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-primary { background: rgb(var(--accent)); color: rgb(var(--accent-fg)); }
+  .btn-ghost { border: 1px solid rgb(var(--border)); color: rgb(var(--fg)); background: transparent; }
+  .card { background: rgb(var(--surface)); border: 1px solid rgb(var(--border) / 0.6); border-radius: var(--radius-card); }
+  .dark .card { border-color: transparent; }
+  .chip { display: inline-flex; align-items: center; min-height: 2.5rem; padding: 0 1rem; border-radius: var(--radius-pill); font-size: 0.8125rem; font-weight: 600; background: rgb(var(--surface-2)); color: rgb(var(--muted)); }
+  .chip[aria-pressed='true'], .chip.on { background: rgb(var(--accent)); color: rgb(var(--accent-fg)); }
+  .input { width: 100%; height: 3.25rem; padding: 0 0.875rem; border: 1px solid rgb(var(--border)); border-radius: var(--radius-btn); background: rgb(var(--surface)); color: rgb(var(--fg)); font-size: 1rem; }
+  .input:focus { outline: none; border-color: rgb(var(--accent)); box-shadow: 0 0 0 4px rgb(var(--accent) / 0.15); }
+  .input[aria-invalid='true'] { border-color: rgb(var(--bad)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
